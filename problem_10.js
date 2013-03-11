@@ -6,29 +6,46 @@
 
 "use strict";
 
-var isPrime = function(n) {
-  for (var i = 2; i < (n / 2); i++) {
-    if (n % i == 0) {
-      return false;
+// var isPrime = function(n) {                // This was my original attempt, quite naive.
+//   for (var i = 2; i < (n / 2); i++) {      // It was running too long and not returning the correct answer.
+//     if (n % i == 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// var sum = 2;
+// var n = 3;
+
+// while (n < 2000000) {
+//   if (isPrime(n)) {
+//     sum += n;
+//     console.log(n);
+//   }
+//   n++;
+// }
+
+// var answer = sum;
+
+function sieve(max) {                         // So I looked up prime generation and found out about the Sieve of Eratosthenes.
+  var D = [], primes = [];                    // I'm not yet entirely sure how it works but it generates a list of primes up to
+  for (var q=2; q<max; q++) {                 // a given max.
+    if (D[q]) {
+      for (var i=0; i<D[q].length; i++) {
+        var p = D[q][i];
+        if (D[p+q]) D[p+q].push(p);
+        else D[p+q]=[p];
+      }
+      delete D[q];
+    } else {
+      primes.push(q);
+      if (q*q<max) D[q*q]=[q];
     }
   }
-  return true;
+  return primes;
 }
 
-var primes = [2];
-var n = 3;
+var answer = sieve(2000000).reduce(function(a, b) { return a + b }); // With this list of primes I was able to find the answer.
 
-while (n < 2000000) {
-  if (isPrime(n)) {
-    primes.push(n);
-  }
-  n++;
-}
-
-var sum = 0;
-
-for (var i = 0; i <= primes.length; i++) {
-  sum = sum + primes[i];
-}
-
-var answer = sum;
+// I intend to revisit prime generation and learn more about these algorithms.
