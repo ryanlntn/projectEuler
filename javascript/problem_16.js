@@ -4,32 +4,21 @@
 
 // What is the sum of the digits of the number 2^1000?
 
+"use strict";
 
-// code I found on stackoverflow to allow big ints in javascript
-// function toFixed(x) {
-//   if (Math.abs(x) < 1.0) {
-//     var e = parseInt(x.toString().split('e-')[1]);
-//     if (e) {
-//         x *= Math.pow(10,e-1);
-//         x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
-//     }
-//   } else {
-//     var e = parseInt(x.toString().split('+')[1]);
-//     if (e > 20) {
-//         e -= 20;
-//         x /= Math.pow(10,e);
-//         x += (new Array(e+1)).join('0');
-//     }
-//   }
-//   return x;
-// }
+var num = [2, 9];
 
-// var answer = toFixed(Math.pow(2, 1000));
-
-var sum = 2;
-
-for (var i = 1; i <= 1000; i++) {
-  sum = Number(2).toFixed(20) * sum.toFixed(20);
+function doubleArrayNum(a) {
+  for (var i = a.length - 1; i >= 0; i--) {
+    if (a[i] * 2 < 10) {
+      a[i] *= 2;
+    } else {
+      a[i - 1] += 1; // problem with carry
+      a[i] = a[i] * 2 - 10;
+    }
+    console.log('loop ' + i);
+  }
+  return a;
 }
 
-var answer = sum.toFixed(20);
+console.log(doubleArrayNum(num));
