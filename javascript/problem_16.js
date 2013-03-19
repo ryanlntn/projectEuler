@@ -6,19 +6,34 @@
 
 "use strict";
 
-var num = [2, 9];
+var num = [2];
 
 function doubleArrayNum(a) {
+  a.unshift(0);
+  var carry = 0;
   for (var i = a.length - 1; i >= 0; i--) {
     if (a[i] * 2 < 10) {
-      a[i] *= 2;
+      a[i] = a[i] * 2 + carry;
+      carry = 0;
     } else {
-      a[i - 1] += 1; // problem with carry
-      a[i] = a[i] * 2 - 10;
+      a[i] = a[i] * 2 - 10 + carry;
+      carry = 1;
     }
-    console.log('loop ' + i);
+  }
+  if (a[0] === 0) {
+    a.splice(0, 1);
   }
   return a;
 }
 
-console.log(doubleArrayNum(num));
+for (var i = 1; i < 1000; i++) {
+  num = doubleArrayNum(num);
+}
+
+var sum = 0;
+
+for (var i = 0; i < num.length; i++) {
+  sum = sum + num[i];
+}
+
+var answer = sum;
