@@ -12,7 +12,7 @@ var fibonacci = function(n) {
   if (n < 2) {
     return 1;
   } else {
-    return fibonacci(n - 1) + fibonacci(n - 2)
+    return fibonacci(n - 1) + fibonacci(n - 2);
   }
 }
 
@@ -23,7 +23,7 @@ while (fibonacci(n) < 4000000) {
   if (fibonacci(n) % 2 === 0) {
     sum += fibonacci(n);
   }
-  n++
+  n++;
 }
 
 var answer = sum;
