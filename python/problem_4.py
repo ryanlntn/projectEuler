@@ -5,3 +5,6 @@
 
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
+largest = max([ x * y for x in range(999) for y in range(999) if str(x * y) == str(x * y)[::-1] ])
+
+print largest
