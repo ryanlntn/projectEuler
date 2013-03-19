@@ -4,3 +4,14 @@
 # from the product of two 2-digit numbers is 9009 = 91 99.
 
 # Find the largest palindrome made from the product of two 3-digit numbers.
+
+a = (1..999).to_a
+largest = 0
+
+a.repeated_combination(2).to_a.each do |x|
+  if (x.first * x.last).to_s == (x.first * x.last).to_s.reverse && x.first * x.last > largest
+    largest = x.first * x.last
+  end
+end
+
+puts largest
