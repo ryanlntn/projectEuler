@@ -11,4 +11,28 @@
 
 // Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 
+function sumOfSquares($numbers) {
+  $sum = 0;
+  for ($i = 0; $i < $numbers.count; $i++) {
+    $sum += pow($numbers[$i], 2);
+  }
+  return $sum;
+}
+
+function squareOfSum($numbers) {
+  $sum = 0;
+  for ($i = 0; $i < $numbers.count; $i++) {
+    $sum += $numbers[$i];
+  }
+  return pow($sum, 2);
+}
+
+$numbers = [];
+
+for ($i = 1; $i <= 100; $i++) {
+  $numbers.array_push($i);
+}
+
+echo squareOfSum($numbers) - sumOfSquares($numbers);
+
 ?>
