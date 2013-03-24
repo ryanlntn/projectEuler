@@ -5,4 +5,27 @@
 
 // What is the 10001st prime number?
 
+function isPrime($n) {
+  $i = 2;
+  while ($i < sqrt($n) + 1) {
+    if ($n % $i == 0) {
+      return false;
+    }
+    $i++;
+  }
+  return true;
+}
+
+$primes = [2];
+$n = 3;
+
+while (count($primes) < 10001) {
+  if (isPrime($n)) {
+    array_push($primes, $n);
+  }
+  $n++;
+} 
+
+echo $primes[10000];
+
 ?>
