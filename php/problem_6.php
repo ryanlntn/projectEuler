@@ -27,14 +27,8 @@ function squareOfSum($numbers) {
   return pow($sum, 2);
 }
 
-$numbers = [];
+$numbers = range(0, 100);
 
-for ($i = 1; $i <= 100; $i++) {
-  array_push($numbers, $i);
-}
-
-$answer = squareOfSum($numbers) - sumOfSquares($numbers);
-
-echo $answer;
+echo squareOfSum($numbers) - sumOfSquares($numbers);
 
 ?>
