@@ -13,7 +13,7 @@
 
 function sumOfSquares($numbers) {
   $sum = 0;
-  for ($i = 0; $i < $numbers.count; $i++) {
+  for ($i = 0; $i < count($numbers); $i++) {
     $sum += pow($numbers[$i], 2);
   }
   return $sum;
@@ -21,7 +21,7 @@ function sumOfSquares($numbers) {
 
 function squareOfSum($numbers) {
   $sum = 0;
-  for ($i = 0; $i < $numbers.count; $i++) {
+  for ($i = 0; $i < count($numbers); $i++) {
     $sum += $numbers[$i];
   }
   return pow($sum, 2);
@@ -30,9 +30,11 @@ function squareOfSum($numbers) {
 $numbers = [];
 
 for ($i = 1; $i <= 100; $i++) {
-  $numbers.array_push($i);
+  array_push($numbers, $i);
 }
 
-echo squareOfSum($numbers) - sumOfSquares($numbers);
+$answer = squareOfSum($numbers) - sumOfSquares($numbers);
+
+echo $answer;
 
 ?>
