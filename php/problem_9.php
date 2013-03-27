@@ -9,9 +9,9 @@
 // There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 // Find the product abc.
 
-for ($a = 1; $a < 1000; $a++) {
-  for ($b = 1; $b < 1000; $b++) {
-    for ($c = 1; $c < 1000; $c++) {
+for ($a = 1; $a < 500; $a++) {
+  for ($b = 1; $b < 500; $b++) {
+    for ($c = 1; $c < 500; $c++) {
       if (pow($a, 2) + pow($b, 2) == pow($c, 2) && $a + $b + $c == 1000) {
         $answer = $a * $b * $c;
       }
