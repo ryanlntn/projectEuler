@@ -19,4 +19,23 @@
 
 // What is the value of the first triangle number to have over five hundred divisors?
 
+$i = 1;
+
+while (true) {
+  $num = $i * ($i + 1) / 2;  // First get the triangle number
+  $factors = [];           // Then perform integer factorization 
+  for ($f = 1; $f <= sqrt($num); $f++) {  
+    if ($num % $f == 0) {
+      array_push($factors, $f, ($num / $f));
+    }
+  }
+  if (count($factors) > 500) { 
+    $answer = $num;         // Return the answer when we get over 500 factors
+    break;
+  }
+  $i++;
+}
+
+echo $answer;
+
 ?>
