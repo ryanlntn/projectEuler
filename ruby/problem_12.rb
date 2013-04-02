@@ -18,15 +18,15 @@
 
 # What is the value of the first triangle number to have over five hundred divisors?
 
-y, x, r = 0, 1, 0
+num, x, divisors = 0, 1, 0
 while true
-  y += x
+  num += x
   x += 1
-  r = 0
-  (1..Math.sqrt(y).ceil).each do |z|
-    y % z == 0 && r += 2 
+  divisors = 0
+  (1..Math.sqrt(num).ceil).each do |z|
+    num % z == 0 && divisors += 2 
   end
-  break if r > 499
+  break if divisors > 499
 end
 
-puts "#{x} #{y} #{r}"
+puts num

@@ -19,7 +19,7 @@
 # What is the value of the first triangle number to have over five hundred divisors?
 
 
-def triangle_num_divisible_by(n):
+def triangle_num_highly_divisible(n):
   i = 1
   while True:
     num = i * (i + 1) / 2
@@ -31,4 +31,4 @@ def triangle_num_divisible_by(n):
       return num
     i += 1
 
-print triangle_num_divisible_by(500)
+print triangle_num_highly_divisible(500)
