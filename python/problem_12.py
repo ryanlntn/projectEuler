@@ -23,9 +23,8 @@ def triangle_num_divisible_by(n):
   i = 1
   while True:
     num = i * (i + 1) / 2
-    print num
     factors = []
-    for f in range(1, (num ** 2)):
+    for f in range(2, int(num ** 0.5) + 1):
       if num % f == 0:
         factors.extend([f, num / f])
     if len(factors) > n:

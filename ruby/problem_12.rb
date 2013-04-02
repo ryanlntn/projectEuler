@@ -17,3 +17,16 @@
 # We can see that 28 is the first triangle number to have over five divisors.
 
 # What is the value of the first triangle number to have over five hundred divisors?
+
+y, x, r = 0, 1, 0
+while true
+  y += x
+  x += 1
+  r = 0
+  (1..Math.sqrt(y).ceil).each do |z|
+    y % z == 0 && r += 2 
+  end
+  break if r > 499
+end
+
+puts "#{x} #{y} #{r}"
