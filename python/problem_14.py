@@ -14,3 +14,24 @@
 # Which starting number, under one million, produces the longest chain?
 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
+
+def collatz_length(n):
+  chain_length = 0
+  while n != 1:
+    chain_length += 1
+    if (n % 2 == 0):
+      n = n / 2
+    else:
+      n = 3 * n + 1
+  return chain_length + 1
+
+starting_number = 0
+longest_chain = 0
+
+for i in reversed(range(1, 1000000)):
+  print i
+  if collatz_length(i) > longest_chain:
+    longest_chain = collatz_length(i)
+    starting_number = i
+
+print starting_number
