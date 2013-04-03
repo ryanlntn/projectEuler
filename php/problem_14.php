@@ -16,4 +16,30 @@
 
 // NOTE: Once the chain starts the terms are allowed to go above one million.
 
+function collatzLength($n) {
+  $chainLength = 0;
+  while ($n != 1) {
+    $chainLength++;
+    if ($n % 2 == 0) {
+      $n = $n / 2;
+    } else {
+      $n = 3 * $n + 1;
+    }
+  }
+  return $chainLength + 1;
+}
+
+$startingNumber = 0;
+$longestChain = 0;
+
+for ($i = 999999; $i > 0; $i--) {
+  echo $i . "\n";
+  if (collatzLength($i) > $longestChain) {
+    $longestChain = collatzLength($i);
+    $startingNumber = $i;
+  }
+}
+
+echo $startingNumber;
+
 ?>
