@@ -6,4 +6,17 @@
 
 // How many such routes are there through a 20 x 20 grid?
 
+function factorial($n) {
+  if ($n == 1) {
+    return 1;
+  } 
+  return $n * factorial($n - 1);
+}
+
+function lattice_paths($x, $y) {
+  return factorial($x + $y) / (factorial($x) * factorial($y));
+}
+
+echo lattice_paths(20, 20);
+
 ?>
