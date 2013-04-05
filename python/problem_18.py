@@ -48,26 +48,31 @@ triangle = [[75],
             [63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
             [04, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 04, 23]]
 
-def sum_path(triangle, path):
-  sum = 0
-  for index, row in enumerate(triangle):
-    sum += row[path[index]]
-  return sum
 
-def generate_paths(length):
-  path = range(length)
-  yield path
+def find_max_sum(triangle):
+  while len(triangle) > 1:
+    reduce_triangle(triangle)
+  return triangle[0][0]
 
-greatest_sum, path, depth, paths = 0, range(len(triangle)), 1, []
 
-while path[-1] > 0:
-  for d in reversed(range(1, depth)):
-    paths.append(path)
-    if sum_path(triangle, path) > greatest_sum:
-      greatest_sum = sum_path(triangle, path)
-    path[-d] -= 1
-    
-  depth += 1
+def reduce_triangle(to_reduce):
+  """
+  Find the max for each valid route from the 
+  base of the triangle up, row by row.
 
-print len(paths)
-print greatest_sum
+  >>> example = [[1],
+                 [2, 3],
+                 [4, 5, 6]]
+
+  >>> reduce_triangle(example)
+  >>> example
+
+  [[1], [7, 9]]
+
+  """
+  last_row = to_reduce[-1]
+  for index in xrange(len(to_reduce) - 1):
+    to_reduce[-2][index] += max(last_row[index:index + 2])
+  del to_reduce[-1]
+
+print find_max_sum(triangle)
