@@ -49,4 +49,17 @@ $triangle = [[75],
              [63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
              [04, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 04, 23]];
 
+function find_max_sum($triangle) {
+  while (count($triangle) > 1) {
+    $last_row = end($triangle);
+    for ($index = 0; $index < count($last_row) - 1; $index++) {
+      $triangle[count($triangle) - 2][$index] += max(array_slice($last_row, $index, 2));
+    }
+    $triangle = array_slice($triangle, 0, -1);
+  }
+  return $triangle[0][0];
+}
+
+echo find_max_sum($triangle);              
+
 ?>

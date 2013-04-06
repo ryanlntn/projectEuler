@@ -63,4 +63,4 @@ def reduce_triangle(to_reduce)
   to_reduce.delete_at(-1)
 end
 
-puts find_max_sum(triangle)            
+puts find_max_sum(triangle)          
