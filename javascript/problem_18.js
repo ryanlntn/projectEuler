@@ -47,4 +47,17 @@ var triangle = [[75],
                 [91, 71, 52, 38, 17, 14, 91, 43, 58, 50, 27, 29, 48],
                 [63, 66, 04, 68, 89, 53, 67, 30, 73, 16, 69, 87, 40, 31],
                 [04, 62, 98, 27, 23, 9, 70, 98, 73, 93, 38, 53, 60, 04, 23]];
+
+function find_max_sum(triangle) {
+  while (triangle.length > 1) {
+    var last_row = triangle[triangle.length - 1];
+    for (var i = 0; i < last_row.length - 1; i++) {
+      triangle[triangle.length - 2][i] += Math.max.apply(Math, last_row.slice(i, i + 2));
+    }
+    triangle = triangle.slice(0, -1);
+  }
+  return triangle[0][0];
+}
+
+var answer = find_max_sum(triangle);                   
                 
