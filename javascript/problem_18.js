@@ -32,6 +32,8 @@
 // However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be 
 // solved by brute force, and requires a clever method! ;o)
 
+// "use strict"; not using strict this time because of the use of octal literals which I convert to base 10 numbers below
+
 var triangle = [[75],
                 [95, 64],
                 [17, 47, 82],

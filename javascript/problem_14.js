@@ -15,6 +15,8 @@
 
 // NOTE: Once the chain starts the terms are allowed to go above one million.
 
+"use strict";
+
 var collatzLength = function(n) {
   var chainLength = 0;
   while (n != 1) {
