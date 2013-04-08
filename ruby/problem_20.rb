@@ -6,3 +6,9 @@
 # and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
 
 # Find the sum of the digits in the number 100!
+
+def factorial n
+  n.downto(1).reduce(:*)
+end
+
+puts factorial(100).to_s.split(//).map(&:to_i).reduce(:+)
