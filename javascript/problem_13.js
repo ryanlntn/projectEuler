@@ -4,7 +4,7 @@
 // Work out the first ten digits of the sum of the following one-hundred 50-digit numbers.
 
 "use strict";
-      
+
 var nums = [37107287533902102798797998220837590246510135740250,
             46376937677490009712648124896970078050417018260538,
             74324986199524741059474233309513058123726617309629,
@@ -108,10 +108,6 @@ var nums = [37107287533902102798797998220837590246510135740250,
 
 // First attempt. This will most likely fail because of lack of precision.
 
-var sum = 0;
-
-for (var i = 0; i < nums.length; i++) {
-  sum += nums[i];     // Haha it's too easy!
-}            
+var sum = nums.reduce(function(a, b){ return a + b });
 
 var answer = sum.toString().replace('.', '').substring(0, 10); // And now it returns the actual answer to the problem.
