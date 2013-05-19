@@ -9,21 +9,25 @@
 # Evaluate the sum of all the amicable numbers under 10000.
 
 def proper_divisors(n)
-  (1...n).to_a.select{ |divisor| n % divisor == 0 }
+  first_half = (2...n**0.5).to_a.select{ |divisor| n % divisor == 0 }
+  second_half = first_half.map{ |divisor| n / divisor }
+  first_half.concat(second_half) << 1
 end
 
 def d(n)
-  proper_divisors(n).reduce(&:+)
+  proper_divisors(n).reduce(:+)
 end
 
-def is_amicable_pair?(n1, n2)
-  d(n1) == n2 && d(n2) == n1
+def all_d_of_n(bound)
+  (0...bound).map{ |n| d(n) }
+end
+
+def is_amicable?(n, d_of_n)
+  d(d_of_n) == n && d_of_n != n
 end
 
 def amicable_numbers(bound)
-  (1...bound).to_a.combination(2).select{ |n1, n2| is_amicable_pair?(n1, n2) }
+  all_d_of_n(bound).each_with_index.select{ |d_of_n, n| is_amicable?(n, d_of_n) }.flatten.uniq
 end
 
-start = Time.now
-puts amicable_numbers(10000).flatten.reduce(&:+)
-puts Time.now - start
+puts amicable_numbers(10000).reduce(&:+)
