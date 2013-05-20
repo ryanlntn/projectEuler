@@ -17,3 +17,33 @@
 
 # Find the sum of all the positive integers which cannot be written as the sum of
 # two abundant numbers.
+
+class Integer
+  def proper_divisors
+    first_half = (2...self**0.5).to_a.select{ |divisor| self % divisor == 0 }
+    second_half = first_half.map{ |divisor| self / divisor }
+    first_half.concat(second_half) << 1
+  end
+
+  def sum_of_divisors
+    self.proper_divisors.reduce(:+)
+  end
+
+  def abundant?
+    self.sum_of_divisors > self
+  end
+
+  def perfect?
+    self.sum_of_divisors == self
+  end
+
+  def deficient?
+    self.sum_of_divisors < self
+  end
+end
+
+abundant_nums = 1.upto(28123).to_a.select(&:abundant?)
+
+puts abundant_nums.first
+puts abundant_nums.length
+puts abundant_nums.last
