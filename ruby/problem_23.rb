@@ -20,9 +20,14 @@
 
 class Integer
   def proper_divisors
-    first_half = (2...self**0.5).to_a.select{ |divisor| self % divisor == 0 }
-    second_half = first_half.map{ |divisor| self / divisor }
-    first_half.concat(second_half) << 1
+    divisors = []
+    (2..(Math.sqrt(self) + 1)).each do |i|
+        if self % i == 0
+            divisors << i
+            divisors << (self/i)
+        end
+    end
+    divisors
   end
 
   def sum_of_divisors
