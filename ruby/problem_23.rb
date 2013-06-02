@@ -18,20 +18,21 @@
 # Find the sum of all the positive integers which cannot be written as the sum of
 # two abundant numbers.
 
+require 'mathn'
+
 class Integer
-  def proper_divisors
-    divisors = []
-    (2..(Math.sqrt(self) + 1)).each do |i|
-        if self % i == 0
-            divisors << i
-            divisors << (self/i)
-        end
+  def divisors
+    return [1] if self == 1
+    primes, powers = self.prime_division.transpose
+    exponents = powers.map{|i| (0..i).to_a}
+    divisors = exponents.shift.product(*exponents).map do |powers|
+      primes.zip(powers).map{|prime, power| prime ** power}.inject(:*)
     end
-    divisors
+    divisors.take divisors.length - 1
   end
 
   def sum_of_divisors
-    self.proper_divisors.reduce(:+)
+    self.divisors.reduce(:+)
   end
 
   def abundant?
@@ -47,7 +48,7 @@ class Integer
   end
 end
 
-abundant_nums = 1.upto(28123).to_a.select(&:abundant?)
+abundant_nums = (1..28123).select(&:abundant?)
 
 puts abundant_nums.first
 puts abundant_nums.length
