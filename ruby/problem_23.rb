@@ -48,8 +48,16 @@ class Integer
   end
 end
 
-abundant_nums = (1..28123).select(&:abundant?)
+abundants = (1..28123).select(&:abundant?)
 
-puts abundant_nums.first
-puts abundant_nums.length
-puts abundant_nums.last
+i = 0
+sums = []
+abundants.each do |x|
+  abundants[i..abundants.length].each do |y|
+    sum = x + y
+    sums << sum unless sum > 28213
+  end
+  i += 1
+end
+sums.uniq!
+puts (1..28213).reject { |n| sums.include? n }.reduce(:+)
